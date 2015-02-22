@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prime Number App Presentation</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Prime Number App Presentation">
+  <meta name="author" content="Olivier DANCOT">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Prime Number App Presentation</h1>
+    <h2>App for DevDataApp from Coursera</h2>
+    <p>Olivier DANCOT<br/>Data Analyst</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Prime Number App Presentation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Welcome on the Slidify Presentation of my App for Coursera Developing Data Product Projetc. You should find more information about it on the next slide. </p>
+
+<p><em>Thank&#39;s for reading</em></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>What is the Closet Prime Number ShinyApp ?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I made this App to help people to find the closest prime number for any number, between 1 to 100 000 easly and in one click. </p>
+
+<p>You just have to write down a number and click on the button and you&#39;ll find it ! </p>
+
+<p>No more :) </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Library</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I used 2 library to do this app : </p>
+
+<ul>
+<li>matlab</li>
+<li>data.table</li>
+</ul>
+
+<p>Then I calculate the prime number with a function : </p>
+
+<pre><code>function(number)  
+{ 
+        x &lt;- data.table(a=1:100000,b=1) 
+        x$b&lt;-isprime(x$a) 
+        x &lt;- subset(x, b==1) 
+        x$c&lt;-abs(x$a-number) 
+        low&lt;-min(x$c) 
+        guess &lt;- subset(x, c==low) 
+        xx&lt;-guess$a 
+} 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>UI.R</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>I put a Numeric Input on Sidebar Panel and the answer to the question on the main panel, it is the best user experience way to give data for this application. </p>
+
+<p>Here is my code : </p>
+
+<pre><code>shinyUI(pageWithSidebar( 
+               headerPanel(&quot;What is the Closest Prime Number&quot;), 
+               sidebarPanel( 
+               numericInput(&quot;number&quot;, &#39;The number I would like to evaluate is:&#39;, &quot;&quot;, min = 0, max = 100000, step = 1), 
+               h6(&#39;positive values between 1 and 100,000 are supported. You only have to write your number and clic on Find My Prime button&#39;),
+                       actionButton(&quot;goButton&quot;, &quot;Find my Prime!&quot;) 
+               ), 
+               mainPanel( 
+                        h3(&#39;The closest prime number to your entry of:&#39;), 
+                        verbatimTextOutput(&quot;inputValue&quot;), 
+                        h4(&#39;is the prime number(s)... &#39;), 
+                        verbatimTextOutput(&quot;prediction&quot;) 
+                ) 
+        ) 
+) 
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>On ShinyApps</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Application is really easy to use. </p>
+
+<p>You can find some explaination about how it work on the page of the app itself : 
+<strong><a href="https://odancot.shinyapps.io/DataProd/">https://odancot.shinyapps.io/DataProd/</a></strong></p>
+
+<p>In resume : quite a simple application but usefull to have more time on dev than on search. </p>
+
+<p><strong>Hope you enjoy it !</strong></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Prime Number App Presentation'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What is the Closet Prime Number ShinyApp ?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Library'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='UI.R'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='On ShinyApps'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title=''>
+         6
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
