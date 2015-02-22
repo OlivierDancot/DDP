@@ -1,0 +1,92 @@
+---
+title       : Prime Number App Presentation
+subtitle    : App for DevDataApp from Coursera
+author      : Olivier DANCOT
+job         : Data Analyst
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## Prime Number App Presentation
+
+Welcome on the Slidify Presentation of my App for Coursera Developing Data Product Projetc. You should find more information about it on the next slide. 
+
+*Thank's for reading*
+
+--- .class #id 
+
+## What is the Closet Prime Number ShinyApp ? 
+
+I made this App to help people to find the closest prime number for any number, between 1 to 100 000 easly and in one click. 
+
+You just have to write down a number and click on the button and you'll find it ! 
+
+No more :) 
+
+
+--- .class #id 
+
+## Library 
+
+I used 2 library to do this app : 
+- matlab
+- data.table
+
+Then I calculate the prime number with a function : 
+
+```
+function(number)  
+{ 
+        x <- data.table(a=1:100000,b=1) 
+        x$b<-isprime(x$a) 
+        x <- subset(x, b==1) 
+        x$c<-abs(x$a-number) 
+        low<-min(x$c) 
+        guess <- subset(x, c==low) 
+        xx<-guess$a 
+} 
+```
+
+--- .class #id 
+
+## UI.R
+
+I put a Numeric Input on Sidebar Panel and the answer to the question on the main panel, it is the best user experience way to give data for this application. 
+
+Here is my code : 
+```
+shinyUI(pageWithSidebar( 
+               headerPanel("What is the Closest Prime Number"), 
+               sidebarPanel( 
+               numericInput("number", 'The number I would like to evaluate is:', "", min = 0, max = 100000, step = 1), 
+               h6('positive values between 1 and 100,000 are supported. You only have to write your number and clic on Find My Prime button'),
+                       actionButton("goButton", "Find my Prime!") 
+               ), 
+               mainPanel( 
+                        h3('The closest prime number to your entry of:'), 
+                        verbatimTextOutput("inputValue"), 
+                        h4('is the prime number(s)... '), 
+                        verbatimTextOutput("prediction") 
+                ) 
+        ) 
+) 
+```
+
+--- .class #id 
+
+## On ShinyApps
+
+Application is really easy to use. 
+
+You can find some explaination about how it work on the page of the app itself : 
+**https://odancot.shinyapps.io/DataProd/**
+
+In resume : quite a simple application but usefull to have more time on dev than on search. 
+
+**Hope you enjoy it !**
+
+--- .class #id 
